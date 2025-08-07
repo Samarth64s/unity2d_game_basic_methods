@@ -13,6 +13,15 @@ public class PauseAndPlayGame : MonoBehaviour
     // Tracks whether the game is currently paused
     private bool isPaused = false;
 
+    void Start()
+    {
+        // Ensure the game starts in play mode and the correct button is shown
+        Time.timeScale = 1f;
+        isPaused = false;
+        playButton.SetActive(false);   // Hide Play button at the start
+        pauseButton.SetActive(true);   // Show Pause button at the start
+    }
+
     /// <summary>
     /// Pauses the game by setting Time.timeScale to 0
     /// Hides the pause button and shows the play button
@@ -35,5 +44,20 @@ public class PauseAndPlayGame : MonoBehaviour
         isPaused = false;
         pauseButton.SetActive(true);
         playButton.SetActive(false);
+    }
+
+    /// <summary>
+    /// Toggles pause state using one button
+    /// </summary>
+    public void TogglePause()
+    {
+        if (isPaused)
+        {
+            ResumeGame();
+        }
+        else
+        {
+            PauseGame();
+        }
     }
 }
